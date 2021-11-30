@@ -1,6 +1,3 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-
-const app = document.getElementById("app");
-ReactDOM.render(<App />, app);
+import Console from "./Console";
+window.Console = Console;
+export default Console;
