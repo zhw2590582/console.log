@@ -4,14 +4,11 @@ import styled from "styled-components";
 
 const Style = styled.div`
   position: relative;
-  background-color: "#242424";
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #242424;
   .console-header {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    z-index: 1;
-    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,8 +32,9 @@ const Style = styled.div`
   }
   .console-component {
     position: relative;
-    z-index: 0;
-    padding-top: 35px;
+    overflow: auto;
+    height: 200px;
+    flex: 1;
   }
 `;
 
