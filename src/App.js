@@ -4,7 +4,7 @@ import * as Demo from "./demo";
 import { searchParam } from "./utils";
 
 const id = searchParam("id");
-const channel = new BroadcastChannel(`channel_${id}` || "test_channel");
+const channel = new BroadcastChannel(`channel_${id || "test"}`);
 console.log("Console channel name: " + channel.name);
 
 export default class App extends React.Component {

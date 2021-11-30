@@ -6,7 +6,7 @@ import { searchParam } from "./utils";
 const type = searchParam("type");
 if (type === "proxy") {
   const id = searchParam("id");
-  const channel = new BroadcastChannel(`channel_${id}` || "test_channel");
+  const channel = new BroadcastChannel(`channel_${id || "test"}`);
   console.log("Proxy channel name: " + channel.name);
   window.addEventListener("message", (event) => {
     const { log, from } = event.data;
