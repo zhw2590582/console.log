@@ -1,0 +1,53 @@
+html,
+body {
+  height: 100%;
+  background-color: #242424;
+}
+
+#app {
+  height: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #666;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ccc;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #eee;
+  padding: 7px 10px;
+  font-size: 13px;
+  background-color: rgb(0 0 0 / 30%);
+  border-bottom: 1px solid rgb(255 255 255 / 20%);
+  user-select: none;
+}
+
+.header .left {
+  display: flex;
+  align-items: center;
+}
+
+.header .number {
+  margin-left: 5px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.header .right {
+  cursor: pointer;
+}
