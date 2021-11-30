@@ -45,7 +45,9 @@ export default class App extends React.Component {
             Clear
           </div>
         </div>
-        <Console logs={this.state.logs} variant="dark" />
+        <div className="console">
+          <Console logs={this.state.logs} variant="dark" />
+        </div>
       </div>
     );
   }
