@@ -1,6 +1,11 @@
 import React from "react";
 import { Console, Hook } from "console-feed";
 import * as Demo from "./demo";
+import { searchParam } from "./utils";
+
+const id = searchParam("id");
+const channel = new BroadcastChannel(`channel_${id}` || "test_channel");
+console.log("Console channel name: " + channel.name);
 
 export default class App extends React.Component {
   state = {
@@ -9,7 +14,14 @@ export default class App extends React.Component {
 
   componentDidMount() {
     Hook(window.console, (log) => this.add(log), false);
+    channel.addEventListener("message", this.onMessage.bind(this));
     Demo.Logs();
+  }
+
+  onMessage(event) {
+    const { log, from } = event.data;
+    if (from !== "PROXY") return;
+    this.add(log);
   }
 
   add(log) {
