@@ -14,8 +14,8 @@ const Style = styled.div`
     align-items: center;
     color: #eee;
     padding: 7px 10px;
-    font-size: 13px;
-    background-color: #222;
+    font-size: 12px;
+    background-color: #111;
     border-bottom: 1px solid rgb(255 255 255 / 10%);
     user-select: none;
     .console-header-left {
@@ -31,6 +31,7 @@ const Style = styled.div`
     }
   }
   .console-component {
+    scroll-behavior: smooth;
     position: relative;
     overflow: auto;
     height: 200px;
@@ -41,10 +42,15 @@ const Style = styled.div`
 export default class extends React.Component {
   constructor(props) {
     super(props);
-    this.onMessage = this.onMessage.bind(this);
+
+    this.consoleRef = React.createRef();
     this.onClear = this.onClear.bind(this);
+    this.onMouseEnter = this.onMouseEnter.bind(this);
+    this.onMouseLeave = this.onMouseLeave.bind(this);
+
     this.state = {
       logs: [],
+      hover: false,
     };
   }
 
@@ -52,18 +58,33 @@ export default class extends React.Component {
     Hook(window.console, (log) => this.add(log), false);
   }
 
-  onMessage(event) {
-    const { data, type, from } = event.data;
-    if (from !== "APP" || type !== "LOG") return;
-    this.add(data);
-  }
-
   add(log) {
-    this.setState({ logs: [...this.state.logs, log] });
+    this.setState({
+      logs: [...this.state.logs, log],
+    });
+
+    const { current } = this.consoleRef;
+    if (!this.state.hover && current) {
+      current.scrollTop = current.scrollHeight;
+    }
   }
 
   onClear() {
-    this.setState({ logs: [] });
+    this.setState({
+      logs: [],
+    });
+  }
+
+  onMouseEnter() {
+    this.setState({
+      hover: true,
+    });
+  }
+
+  onMouseLeave() {
+    this.setState({
+      hover: false,
+    });
   }
 
   componentWillUnmount() {
@@ -84,7 +105,12 @@ export default class extends React.Component {
             Clear
           </div>
         </div>
-        <div className="console-component">
+        <div
+          ref={this.consoleRef}
+          className="console-component"
+          onMouseEnter={this.onMouseEnter}
+          onMouseLeave={this.onMouseLeave}
+        >
           <Console logs={this.state.logs} variant="dark" />
         </div>
       </Style>
