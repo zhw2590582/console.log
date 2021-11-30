@@ -43,6 +43,7 @@ export default class extends React.Component {
   constructor(props) {
     super(props);
 
+    this.scrollTimer = null;
     this.consoleRef = React.createRef();
     this.onClear = this.onClear.bind(this);
     this.onMouseEnter = this.onMouseEnter.bind(this);
@@ -65,7 +66,10 @@ export default class extends React.Component {
 
     const { current } = this.consoleRef;
     if (!this.state.hover && current) {
-      current.scrollTop = current.scrollHeight;
+      clearTimeout(this.scrollTimer);
+      this.scrollTimer = setTimeout(() => {
+        current.scrollTop = current.scrollHeight;
+      }, 200);
     }
   }
 
