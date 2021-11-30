@@ -3,9 +3,10 @@ import { Console, Hook, Unhook } from "console-feed";
 import styled from "styled-components";
 
 const Style = styled.div`
+  position: relative;
   background-color: "#242424";
   .console-header {
-    position: fixed;
+    position: absolute;
     left: 0;
     top: 0;
     right: 0;
