@@ -50,7 +50,7 @@ export default class extends React.Component {
   }
 
   componentDidMount() {
-    Hook(window.console, (log) => this.add(log));
+    Hook(window.console, (log) => this.add(log), false);
   }
 
   onMessage(event) {
