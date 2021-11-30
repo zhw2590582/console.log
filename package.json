@@ -4,7 +4,7 @@
   "description": "console.log",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
-    "start": "parcel src/index.html --open",
+    "start": "parcel src/index.js",
     "build": "parcel build src/index.js"
   },
   "targets": {
