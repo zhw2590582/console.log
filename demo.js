@@ -1,4 +1,4 @@
-export function Logs() {
+window.Logs = function Logs() {
   console.count("Counting numbers");
   console.time("Render time");
   console.log(
@@ -50,15 +50,4 @@ export function Logs() {
     console.error(e);
   }
   console.timeEnd("Render time");
-}
-
-export const Initial = [
-  {
-    method: "result",
-    data: ["Demo result"],
-  },
-  {
-    method: "command",
-    data: ["Demo command"],
-  },
-];
+};
